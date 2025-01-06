@@ -8,6 +8,9 @@
    Details news
 ![bandicam 2025-01-06 17-30-43-630](https://github.com/user-attachments/assets/627c6102-bcc2-4595-939f-bb109f8ef0c0)
 
+#video
+https://github.com/user-attachments/assets/47056937-1455-4156-8bcb-2b9ff7a34891
+
 
 
 
