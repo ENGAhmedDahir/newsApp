@@ -2,11 +2,15 @@
 
 # First Screen
   overviews news
-![bandicam 2025-01-06 17-30-38-505](https://github.com/user-attachments/assets/7dd6b237-bc8d-44dd-b433-614f1b01ff23) 
+  ![Image](https://github.com/user-attachments/assets/b866a26e-5997-4fa0-96e7-7da6fa4d4ecc)
+
 
 # Second Screen 
  Details news
 ![bandicam 2025-01-06 17-30-43-630](https://github.com/user-attachments/assets/627c6102-bcc2-4595-939f-bb109f8ef0c0)
+
+#BookMarks Screen
+![Image](https://github.com/user-attachments/assets/31cc218f-4f2a-433f-9a9c-d427271f807b)
 
 #video
 https://github.com/user-attachments/assets/47056937-1455-4156-8bcb-2b9ff7a34891
