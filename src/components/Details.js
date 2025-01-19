@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#1a202c',
     padding: 16,
-    marginBottom: 16
+   
   },
   image: {
     width: '100%',
