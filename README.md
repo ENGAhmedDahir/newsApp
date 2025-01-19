@@ -1,3 +1,20 @@
+# this is Arabic News App
+
+# First Screen
+  overviews news
+![bandicam 2025-01-06 17-30-38-505](https://github.com/user-attachments/assets/7dd6b237-bc8d-44dd-b433-614f1b01ff23) 
+
+# Second Screen 
+ Details news
+![bandicam 2025-01-06 17-30-43-630](https://github.com/user-attachments/assets/627c6102-bcc2-4595-939f-bb109f8ef0c0)
+
+#video
+https://github.com/user-attachments/assets/47056937-1455-4156-8bcb-2b9ff7a34891
+
+
+
+
+
 # Welcome to your Expo app 👋
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
