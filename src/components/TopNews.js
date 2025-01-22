@@ -4,14 +4,18 @@ import { useNavigation } from '@react-navigation/native';
 import { BookmarkIcon, BookmarkSlashIcon } from 'react-native-heroicons/outline';
 import { useBookmarks } from '../BookmarkContext';
 
-const TopNews = ({ data }) => {
+const TopNews = ({ data, source }) => {
   const navigation = useNavigation();
-  const { bookmarks, toggleBookmark } = useBookmarks();
+  const { isBookmarked, toggleBookmark } = useBookmarks();
 
-  const isBookmarked = bookmarks.some((item) => item.id === data.id);
+  const bookmarked = isBookmarked(data.id, source);
 
   const handlePress = () => {
     navigation.navigate('Details', { newsData: data });
+  };
+
+  const handleBookmark = () => {
+    toggleBookmark(data, source);
   };
 
   return (
@@ -21,9 +25,9 @@ const TopNews = ({ data }) => {
       <Text style={styles.date}>{data.date}</Text>
       <TouchableOpacity
         style={styles.iconContainer}
-        onPress={() => toggleBookmark(data)}
+        onPress={handleBookmark}
       >
-        {isBookmarked ? (
+        {bookmarked ? (
           <BookmarkSlashIcon size={30} color="red" />
         ) : (
           <BookmarkIcon size={30} color="yellow" />

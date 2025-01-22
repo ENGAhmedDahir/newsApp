@@ -41,33 +41,35 @@ const Home = () => {
           'x-rapidapi-key': '1aa3fec721msh8a1a6bab027dddbp1c6771jsnc1a23fd6862c',
         },
       });
-    
+  
       setLoading(false);
       const newsData = Array.isArray(response?.data?.results)
-  ? response.data.results.map((item, index) => ({
-      id: index.toString(),
-      title: item.headline || item.title || 'No title available',
-      image: item.image,
-      date: item.date,
-      description: item.content || 'No description available',
-    }))
-  : Array.isArray(response?.data)
-  ? response.data.map((item, index) => ({
-      id: index.toString(),
-      title: item.headline || item.title || 'No title available',
-      image: item.image,
-      date: item.date,
-      description: item.content || 'No description available',
-    }))
-  : [];
-
+        ? response.data.results.map((item, index) => ({
+            id: `${source}-${index}`,
+            title: item.headline || item.title || 'No title available',
+            image: item.image,
+            date: item.date,
+            description: item.content || 'No description available',
+          }))
+        : Array.isArray(response?.data)
+        ? response.data.map((item, index) => ({
+            id: `${source}-${index}`, 
+            title: item.headline || item.title || 'No title available',
+            image: item.image,
+            date: item.date,
+            description: item.content || 'No description available',
+          }))
+        : [];
+  
       setTpNews(newsData);
       setFilteredNews(newsData);
+     
     } catch (error) {
       console.error('Error fetching news:', error);
       setLoading(false);
     }
   };
+  
 
   useEffect(() => {
     fetchNews(activeSource);

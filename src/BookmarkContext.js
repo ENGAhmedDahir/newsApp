@@ -1,12 +1,10 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-// Create the Bookmark Context
 const BookmarkContext = createContext();
 
-// Create the Provider component
 export const BookmarkProvider = ({ children }) => {
-  const [bookmarks, setBookmarks] = useState([]);
+  const [bookmarks, setBookmarks] = useState({});
 
   // Load bookmarks from AsyncStorage
   useEffect(() => {
@@ -32,25 +30,50 @@ export const BookmarkProvider = ({ children }) => {
       console.error("Failed to save bookmarks:", error);
     }
   };
-
   // Toggle a bookmark (add/remove)
-  const toggleBookmark = (news) => {
+  const toggleBookmark = async (news, source) => {
     setBookmarks((prev) => {
-      const updatedBookmarks = prev.some((item) => item.id === news.id)
-        ? prev.filter((item) => item.id !== news.id) // Remove bookmark
-        : [...prev, news]; // Add bookmark
+      const sourceBookmarks = prev[source] || [];
+      const updatedSourceBookmarks = sourceBookmarks.some(
+        (item) => item.id === news.id
+      )
+        ? sourceBookmarks.filter((item) => item.id !== news.id)
+        : [...sourceBookmarks, news]; 
 
-      saveBookmarksToStorage(updatedBookmarks); // Save to AsyncStorage
+      const updatedBookmarks = {
+        ...prev,
+        [source]: updatedSourceBookmarks,
+      };
+
+      saveBookmarksToStorage(updatedBookmarks);
       return updatedBookmarks;
     });
   };
 
+ 
+  const isBookmarked = (newsId, source) => {
+    return bookmarks[source]?.some((item) => item.id === newsId) || false;
+  };
+
+ 
+  const clearAllBookmarks = async () => {
+    try {
+      setBookmarks({});
+      await AsyncStorage.removeItem("bookmarks");
+      
+    } catch (error) {
+      console.error("Error clearing bookmarks:", error);
+    }
+  };
+
   return (
-    <BookmarkContext.Provider value={{ bookmarks, toggleBookmark }}>
+    <BookmarkContext.Provider
+      value={{ bookmarks, toggleBookmark, isBookmarked, clearAllBookmarks }}
+    >
       {children}
     </BookmarkContext.Provider>
   );
 };
 
-// Custom hook to use the Bookmark Context
+
 export const useBookmarks = () => useContext(BookmarkContext);
